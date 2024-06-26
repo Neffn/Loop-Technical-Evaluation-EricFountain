@@ -1,0 +1,22 @@
+{
+  "name": "loop-technical-evaluation-ericfountain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neffn/Loop-Technical-Evaluation-EricFountain.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Neffn/Loop-Technical-Evaluation-EricFountain/issues"
+  },
+  "homepage": "https://github.com/Neffn/Loop-Technical-Evaluation-EricFountain#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.14.9"
+  }
+}
