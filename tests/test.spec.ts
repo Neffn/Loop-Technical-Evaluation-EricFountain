@@ -1,4 +1,5 @@
 const { test, expect } = require("@playwright/test");
+require("dotenv").config();
 
 const testCases = [
   {
@@ -47,7 +48,7 @@ const testCases = [
 
 test.describe("Asana Data-Driven Tests", () => {
   testCases.forEach((data) => {
-    test("", async ({ page }) => {
+    test(`${data.name}`, async ({ page }) => {
       await test.step("Login to Asana", async () => {
         await page.goto("https://app.asana.com/-/login");
         await page.getByLabel("Email address").click();
@@ -56,16 +57,25 @@ test.describe("Asana Data-Driven Tests", () => {
           .getByRole("button", { name: "Continue", exact: true })
           .click();
         await page.getByLabel("Password", { exact: true }).click();
-        await page.getByLabel("Password", { exact: true }).fill("Password123");
+        await page
+          .getByLabel("Password", { exact: true })
+          .fill(process.env.PASSWORD);
         await page.getByRole("button", { name: "Log in" }).click();
       });
 
       await test.step("Navigate to the project page", async () => {
-        // Navigate to the project page
+        const leftNavParent = page.locator(
+          ".SidebarProjectsSectionProjectList-projects"
+        );
+        await leftNavParent.getByText(`${data.leftNav}`).click();
       });
 
       await test.step("Verify the card is within the right column", async () => {
-        // Verify the card is within the right column
+        const column = await page.getByRole("heading", {
+          name: data.column,
+        });
+        const card = await column.getByText(data.card_title);
+        await expect(card).toBeVisible;
       });
     });
   });
