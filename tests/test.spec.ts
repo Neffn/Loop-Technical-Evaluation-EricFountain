@@ -51,9 +51,7 @@ test.describe("Asana Data-Driven Tests", () => {
       await test.step("Login to Asana", async () => {
         await page.goto("https://app.asana.com/-/login");
         await page.getByLabel("Email address").click();
-        await page
-          .getByLabel("Email address")
-          .fill("ben+pose@workwithloop.com");
+        await page.getByLabel("Email address").fill(process.env.EMAIL_ADDRESS);
         await page
           .getByRole("button", { name: "Continue", exact: true })
           .click();
